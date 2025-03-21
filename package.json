@@ -1,0 +1,12 @@
+{
+  "name": "google-clone",
+  "version": "1.0.0",
+  "description": "A Google homepage clone with ocean theme",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+} 
