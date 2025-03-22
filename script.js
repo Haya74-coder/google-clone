@@ -218,4 +218,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize user settings when the page loads
     initializeUserSettings();
+    // Add this new code just before the final closing bracket in script.js
+
+// Apps menu functionality
+const appsButton = document.querySelector('.apps-button');
+const appsMenu = document.querySelector('.apps-menu');
+
+appsButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    appsMenu.style.display = appsMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close apps menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!appsButton.contains(e.target)) {
+        appsMenu.style.display = 'none';
+    }
+});
+
+// Replace the existing fetchSuggestions function with this new one
+async function fetchSuggestions(query) {
+    if (!query.trim()) {
+        suggestionsContainer.style.display = 'none';
+        return;
+    }
+
+    try {
+        // Using a different CORS proxy and adding a timestamp to prevent caching
+        const timestamp = new Date().getTime();
+        const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://suggestqueries.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}&hl=${userLanguage}&gl=${userLocation}&_=${timestamp}`)}`);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        currentSuggestions = data[1] || [];
+        displaySuggestions();
+    } catch (error) {
+        console.error('Error fetching suggestions:', error);
+        // Fallback to basic suggestions if API fails
+        currentSuggestions = [
+            `${query} - Search`,
+            `${query} images`,
+            `${query} news`,
+            `${query} maps`,
+            `${query} videos`
+        ];
+        displaySuggestions();
+    }
+}
 }); 
