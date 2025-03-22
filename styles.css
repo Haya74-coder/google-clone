@@ -252,9 +252,7 @@ body {
     margin-top: 10px;
 }
 
-.apps-button:hover .apps-menu {
-    display: block;
-}
+
 
 .apps-grid {
     display: grid;
@@ -307,9 +305,3 @@ body {
 .logo-text span:nth-child(6) { color: #ea4335; } /* r */
 .logo-text span:nth-child(7) { color: #fbbc05; } /* c */ 
 
-/* Remove this block from your current style.css */
-.apps-button:hover .apps-menu {
-    display: block;
-}
-
-/* Keep all other CSS rules exactly the same */
