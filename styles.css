@@ -306,3 +306,10 @@ body {
 .logo-text span:nth-child(5) { color: #34a853; } /* A */
 .logo-text span:nth-child(6) { color: #ea4335; } /* r */
 .logo-text span:nth-child(7) { color: #fbbc05; } /* c */ 
+
+/* Remove this block from your current style.css */
+.apps-button:hover .apps-menu {
+    display: block;
+}
+
+/* Keep all other CSS rules exactly the same */
